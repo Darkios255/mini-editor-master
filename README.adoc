@@ -1,0 +1,54 @@
+= ACO Mini Editor
+
+Initial files.
+
+== Code source
+
+Le code source du projet respecte la structure préconisée par Apache Maven. 
+Pour compiler le code, utilisez la commande suivantes{nbsp}:
+
+[source,shell]
+----
+mvn compile
+----
+
+Pour exécuter la suite de tests, utilisez la commande suivante{nbsp}:
+
+[source,shell]
+----
+mvn test
+----
+
+== Documentation
+
+Pour documenter son développement, ce projet utilise https://docs.antora.org/[Antora],
+un outil de création de documentation technique et la publier sur le web.
+La documentation est écrite en AsciiDoc, le langage de balisage d’Antora. 
+Les fichiers sont stockés  dans un ou plusieurs dépôts de contenu (git). 
+Antora récupère ensuite votre contenu à partir de là et le transforme en site web. 
+
+Pour installer Antora sur votre compte, après avoir créé votre copie de travail,
+exécutez la commande suivante à la racine du projet{nbsp}:
+
+[source,shell]
+----
+npm install
+----
+
+Pour éditer la documentation technique, vous pouvez installer le https://intellij-asciidoc-plugin.ahus1.de/docs[Plugin IntelliJ AsciiDoc].
+Ce plugin facilite la rédaction et la prévisualisation du contenu AsciiDoc et il offre également des outils de  pour créer et valider les configurations Antora.
+
+Pour générer le site web contenant la documentation technique, utilisez la commande suivante,
+toujours à la racine du projet{nbsp}:
+
+[source,shell]
+----
+npx antora generate antora-playbook.yml
+----
+
+Pour visualiser le contenu généré, vous pouvez utiliser la commande suivante{nbsp}:
+
+[source,shell]
+----
+npx live-server build/site 
+----

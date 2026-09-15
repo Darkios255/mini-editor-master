@@ -1,0 +1,13 @@
+name: doc
+version: 2026
+prerelease: '1.0.O'
+title: Mini Éditeur
+asciidoc:
+  attributes:
+    source-language: asciidoc@
+    xrefstyle: short@
+    listing-caption: Listing@
+    example-caption: true
+    experimental: true
+nav:
+- modules/ROOT/nav.adoc

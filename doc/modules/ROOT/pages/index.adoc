@@ -1,0 +1,133 @@
+= Rapport
+
+[NOTE.todo]
+====
+Ce document contient plusieurs blocs *TODO*, comme celui-ci, 
+contenant des conseils sur la redaction du rapport.
+Pensez à les effacer avant de rendre le projet.
+====
+
+
+.Auteurs
+[%autowidth]
+|===
+| Nom | Prénom | Groupe de TP | Encadrant
+
+| MARIE
+| Jean
+| TP-A
+| Jean-Paul R.
+|===
+
+== Conception du mini-éditeur
+
+[NOTE.todo]
+====
+Dans cette section, vous allez décrire la conception des trois versions du projet. 
+====
+
+
+=== Première version
+
+[NOTE.todo]
+====
+Énumérez et écrivez ici les classes principales de votre conception. 
+Expliquez vos choix de conception{nbsp}: les patrons de conception utilisés et les principes respectés.
+====
+
+
+.Diagramme de classes UML du mini-éditeur
+[plantuml,align=center]
+....
+class Buffer {
+    attribut : Type
+    methode(param : Type): AutreType
+}
+class Selection {
+}
+
+Buffer -- Selection
+....
+
+[NOTE.todo]
+====
+Le diagramme de classes UML doit contenir les classes et interfaces principales, leurs méthodes et attributs,
+ainsi que les associations entre elles.
+Les attributs et les paramètres doivent être typés, les rôles des associations doivent être nommés et leur multiplicités doivent
+être spécifiées.
+====
+
+=== Deuxième version
+
+
+====
+Décrivez les évolutions majeures de cette version et justifiez vos choix de conception.
+====
+
+.Diagramme de classes UML du mini-éditeur (V2)
+[plantuml,align=center]
+....
+class Buffer {
+    attribut : Type
+    methode(param : Type): AutreType
+}
+class Selection {
+}
+
+Buffer -- Selection
+....
+
+=== Troisième version
+
+
+====
+Décrivez les évolutions majeures de cette version et justifiez vos choix de conception.
+====
+
+.Diagramme de classes UML du mini-éditeur (V3)
+[plantuml,align=center]
+....
+class Buffer {
+    attribut : Type
+    methode(param : Type): AutreType
+}
+class Selection {
+}
+
+Buffer -- Selection
+....
+
+== Choix de test et synthèse des résultats des tests
+
+[NOTE.todo]
+====
+Expliquez la stratégie de tests choisie pour votre projet.
+====
+
+=== Stratégie par version
+
+[NOTE.todo]
+====
+Expliquez comment votre suite de tests a évolué au fil des différentes versions du projet.
+====
+
+=== Cas limites et robustesse
+
+[NOTE.todo]
+====
+Énumérez les scénarios critiques que vous avez testé pour assurer la fiabilité de votre projet.
+====
+
+=== Synthèse des résultats
+
+[NOTE.todo]
+====
+Décrivez les résultats obtenus par la suite de tests que vous avez mis en œuvre.
+====
+
+== Conclusion
+
+[NOTE.todo]
+====
+Décrivez le bilan de votre projet{nbsp}: compétences acquises, difficultés rencontrées, pistes d'amélioration.
+====

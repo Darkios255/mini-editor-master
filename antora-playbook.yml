@@ -1,0 +1,65 @@
+site:
+  title: Projet Mini-éditeur
+  url: 
+  start_page: doc::index.adoc
+asciidoc:
+  attributes:
+    author: Jean Marie
+    email: jean.marie@univ-rennes.fr
+    source-highlighter: highlight.js
+    highlightjs-theme: googlecode
+    kroki-fetch-diagram: true
+    kroki-server-url: https://kroki.io
+    lang: fr
+    sectnums: true
+    math: true
+    stem: latexmath
+    icons: font
+    title-separator: "::"
+    xrefstyle: short
+    figure-caption: Figure
+    important-caption: Important
+    last-update-label: Dernière mise à jour
+    appendix-caption: Annexe
+    appendix-refsig: Annexe
+    caution-caption: Attention
+    example-caption: Exemple
+    note-caption: Note
+    table-caption: Tableau
+    tip-caption: Astuce
+    toc-title: Table des matières
+    untitled-label: Sans titre
+    version-label: Version
+    warning-caption: Avertissement
+    pdfscale_xl: 70%
+    pdfscale_l: 60%
+    pdfscale_m: 50%
+    pdfscale_s: 40%
+    pdfscale_xs: 30%
+    page-enable-prism: true
+    allow-uri-read: true
+
+  extensions:
+  - asciidoctor-kroki
+
+content:
+  sources:
+  - url: .
+    start_path: ./doc/
+    branches: HEAD
+
+ui:
+  bundle:
+    url: https://gitlab.univ-nantes.fr/sunye-g/antora-custom-ur-theme/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+
+antora:
+  extensions:
+  - require: '@antora/lunr-extension'
+    languages: [fr]
+
+urls:
+  html_extension_style: indexify
+
+  
+
