@@ -14,9 +14,16 @@ class EngineTest {
         engine = new EngineImpl();
     }
 
-    private void todo() {
-        fail("Unimplemented test");
+    @Test
+    void testConstructor() {
+        StringBuilder buffer = new StringBuilder("initial content");
+        engine = new EngineImpl(buffer);
+
+        assertEquals("initial content", engine.getBufferContents());
+        assertEquals(0, engine.getSelection().getBeginIndex());
+        assertEquals(0, engine.getSelection().getEndIndex());
     }
+
     @Test
     @DisplayName("Buffer must be empty after initialisation")
     void getSelection() {
@@ -27,26 +34,47 @@ class EngineTest {
 
     @Test
     void getBufferContents() {
-        todo();
+        engine.insert("hello");
+        assertEquals("hello", engine.getBufferContents());
     }
 
     @Test
     void getClipboardContents() {
-        todo();
+        engine.insert("hello");
+        engine.getSelection().setBeginIndex(1);
+        engine.getSelection().setEndIndex(4);
+        engine.copySelectedText();
+        assertEquals("ell", engine.getClipboardContents());
     }
 
     @Test
     void cutSelectedText() {
-        todo();
+        engine.insert("abcd");
+        engine.getSelection().setBeginIndex(1);
+        engine.getSelection().setEndIndex(3);
+        engine.cutSelectedText();
+        assertEquals("ad", engine.getBufferContents());
+        assertEquals("bc", engine.getClipboardContents());
     }
 
     @Test
     void copySelectedText() {
-        todo();
+        engine.insert("abcd");
+        engine.getSelection().setBeginIndex(1);
+        engine.getSelection().setEndIndex(3);
+        engine.copySelectedText();
+        assertEquals("bc", engine.getClipboardContents());
     }
 
     @Test
     void pasteClipboard() {
-        todo();
+        engine.insert("abcd");
+        engine.getSelection().setBeginIndex(1);
+        engine.getSelection().setEndIndex(3);
+        engine.copySelectedText();
+        engine.getSelection().setBeginIndex(0);
+        engine.getSelection().setEndIndex(0);
+        engine.pasteClipboard();
+        assertEquals("bcabcd", engine.getBufferContents());
     }
 }

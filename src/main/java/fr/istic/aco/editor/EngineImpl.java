@@ -1,6 +1,28 @@
 package fr.istic.aco.editor;
 
 public class EngineImpl implements Engine {
+
+    private final StringBuilder buffer;
+    private String clipboard;
+    private final Selection selection;
+
+
+    /**
+     * EngineImpl constructor
+     */
+    public EngineImpl() {
+        this(new StringBuilder());
+    }
+
+    /**
+     * EngineImpl constructor
+     */
+    public EngineImpl(StringBuilder buffer) {
+        this.buffer = buffer;
+        this.selection = new SelectionImpl(buffer);
+        this.clipboard = "";
+    }
+
     /**
      * Provides access to the selection control object
      *
@@ -8,8 +30,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public Selection getSelection() {
-        // TODO
-        return null;
+        return this.selection;
     }
 
     /**
@@ -19,8 +40,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public String getBufferContents() {
-        // TODO
-        return null;
+        return this.buffer.toString();
     }
 
     /**
@@ -30,8 +50,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public String getClipboardContents() {
-        // TODO
-        return null;
+        return this.clipboard;
     }
 
     /**
@@ -41,7 +60,9 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void cutSelectedText() {
-        // TODO
+        this.copySelectedText();
+        this.delete();
+
     }
 
     /**
@@ -51,7 +72,19 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void copySelectedText() {
-        // TODO
+        int beginIndex = this.selection.getBeginIndex();
+        int endIndex = this.selection.getEndIndex();
+
+        if (beginIndex < 0 || endIndex < 0 || beginIndex > endIndex || beginIndex > this.buffer.length() || endIndex > this.buffer.length()) {
+            this.clipboard = "";
+            return;
+        }
+
+        if (beginIndex == endIndex) {
+            this.clipboard = "";
+        } else {
+            this.clipboard = this.buffer.substring(beginIndex, endIndex);
+        }
     }
 
     /**
@@ -60,7 +93,10 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void pasteClipboard() {
-        // TODO
+        if (this.clipboard == null) {
+            return;
+        }
+        this.insert(this.clipboard);
     }
 
     /**
@@ -70,7 +106,11 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void insert(String s) {
-
+        int start = this.selection.getBeginIndex();
+        int end = this.selection.getEndIndex();
+        this.buffer.replace(start, end, s); // replace the selected text with the inserted text
+        this.selection.setBeginIndex(start + this.clipboard.length()); // set index to the end of inserted text
+        this.selection.setEndIndex(start + this.clipboard.length());
     }
 
     /**
@@ -78,6 +118,10 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void delete() {
-
+        int beginIndex = this.selection.getBeginIndex();
+        int endIndex = this.selection.getEndIndex();
+        this.buffer.delete(beginIndex, endIndex);
+        selection.setBeginIndex(beginIndex);
+        selection.setEndIndex(endIndex);
     }
 }
