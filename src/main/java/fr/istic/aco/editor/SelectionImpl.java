@@ -8,8 +8,8 @@ public class SelectionImpl implements Selection {
 
     public SelectionImpl(StringBuilder buffer) {
         this.buffer = buffer;
-        this.beginIndex = 0;
-        this.endIndex = 0;
+        this.beginIndex = buffer.length();
+        this.endIndex = buffer.length();
     }
 
     @Override

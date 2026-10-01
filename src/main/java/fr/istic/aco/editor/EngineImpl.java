@@ -8,17 +8,11 @@ public class EngineImpl implements Engine {
 
 
     /**
-     * EngineImpl constructor
+     * EngineImpl create
+     *
      */
     public EngineImpl() {
-        this(new StringBuilder());
-    }
-
-    /**
-     * EngineImpl constructor
-     */
-    public EngineImpl(StringBuilder buffer) {
-        this.buffer = buffer;
+        this.buffer = new StringBuilder();
         this.selection = new SelectionImpl(buffer);
         this.clipboard = "";
     }
@@ -75,11 +69,9 @@ public class EngineImpl implements Engine {
         int beginIndex = this.selection.getBeginIndex();
         int endIndex = this.selection.getEndIndex();
 
-        if (beginIndex < 0 || endIndex < 0 || beginIndex > endIndex || beginIndex > this.buffer.length() || endIndex > this.buffer.length()) {
-            this.clipboard = "";
-            return;
+        if (beginIndex < 0 || endIndex > buffer.length() || beginIndex > endIndex) {
+            return; // invalid
         }
-
         if (beginIndex == endIndex) {
             this.clipboard = "";
         } else {
@@ -106,11 +98,11 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void insert(String s) {
-        int start = this.selection.getBeginIndex();
-        int end = this.selection.getEndIndex();
-        this.buffer.replace(start, end, s); // replace the selected text with the inserted text
-        this.selection.setBeginIndex(start + this.clipboard.length()); // set index to the end of inserted text
-        this.selection.setEndIndex(start + this.clipboard.length());
+        int beginIndex = this.selection.getBeginIndex();
+        int endIndex = this.selection.getEndIndex();
+        this.buffer.replace(beginIndex, endIndex, s); // replace the selected text with the inserted text
+        this.selection.setBeginIndex(beginIndex + this.clipboard.length()); // set index to the end of inserted text
+        this.selection.setEndIndex(beginIndex + this.clipboard.length());
     }
 
     /**
@@ -122,6 +114,6 @@ public class EngineImpl implements Engine {
         int endIndex = this.selection.getEndIndex();
         this.buffer.delete(beginIndex, endIndex);
         selection.setBeginIndex(beginIndex);
-        selection.setEndIndex(endIndex);
+        selection.setEndIndex(beginIndex);
     }
 }

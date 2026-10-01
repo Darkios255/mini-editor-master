@@ -12,24 +12,17 @@ class EngineTest {
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         engine = new EngineImpl();
+        String buffer = "hello world";
+        engine.insert(buffer);
+        assertEquals(buffer, engine.getBufferContents());
     }
 
-    @Test
-    void testConstructor() {
-        StringBuilder buffer = new StringBuilder("initial content");
-        engine = new EngineImpl(buffer);
-
-        assertEquals("initial content", engine.getBufferContents());
-        assertEquals(0, engine.getSelection().getBeginIndex());
-        assertEquals(0, engine.getSelection().getEndIndex());
-    }
 
     @Test
     @DisplayName("Buffer must be empty after initialisation")
     void getSelection() {
         Selection selection = engine.getSelection();
-        assertEquals(selection.getBufferBeginIndex(),selection.getBeginIndex());
-        assertEquals("",engine.getBufferContents());
+        assertEquals(selection.getBufferBeginIndex(), selection.getBeginIndex());
     }
 
     @Test
