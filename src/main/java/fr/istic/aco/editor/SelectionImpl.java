@@ -24,13 +24,10 @@ public class SelectionImpl implements Selection {
 
     @Override
     public void setEndIndex(int endIndex) {
-        if (endIndex < getBufferBeginIndex()) {
-            this.endIndex = getBufferBeginIndex();
-        } else if (endIndex > getBufferEndIndex()) {
-            this.endIndex = getBufferEndIndex();
-        } else {
-            this.endIndex = endIndex;
+        if (endIndex < getBufferBeginIndex() || endIndex > getBufferEndIndex()) {
+            throw new IndexOutOfBoundsException("endIndex is out of bounds");
         }
+        this.endIndex = endIndex;
         if (this.beginIndex > this.endIndex) {
             this.beginIndex = this.endIndex;
         }
@@ -47,7 +44,6 @@ public class SelectionImpl implements Selection {
         }
     }
 
-
     @Override
     public int getBufferBeginIndex() {
         return BUFFER_BEGIN_INDEX;
@@ -57,5 +53,4 @@ public class SelectionImpl implements Selection {
     public int getBufferEndIndex() {
         return buffer.length();
     }
-
 }

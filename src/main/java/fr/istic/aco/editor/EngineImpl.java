@@ -101,8 +101,8 @@ public class EngineImpl implements Engine {
         int beginIndex = this.selection.getBeginIndex();
         int endIndex = this.selection.getEndIndex();
         this.buffer.replace(beginIndex, endIndex, s); // replace the selected text with the inserted text
-        this.selection.setBeginIndex(beginIndex + this.clipboard.length()); // set index to the end of inserted text
-        this.selection.setEndIndex(beginIndex + this.clipboard.length());
+        this.selection.setBeginIndex(beginIndex + s.length());
+        this.selection.setEndIndex(beginIndex + s.length());
     }
 
     /**
